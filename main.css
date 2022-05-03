@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Oswald', sans-serif;
 }
 
 body {
@@ -12,7 +15,7 @@ body {
   justify-content: center;
 }
 
-.calculadora {
+.jogoDaVelha {
   width: fit-content;
   background: #ccc;
   padding: 17px;
@@ -25,11 +28,27 @@ body {
   font-size: 80px;
 }
 
+.placar {
+  font-size: 40px;
+
+}
+.reset{
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+}
+
 .grid-btn {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; /*repeat(4, 1fr)*/
   gap: 5px;
 }
 
+button:disabled{
+  border: 1px solid #4F4F4F;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #000000;
+}
 
 

@@ -1,6 +1,8 @@
 var tabuleiro = [0,0,0,0,0,0,0,0,0];
 var jogadorDaVez = true
 var vencedor = 0;
+var placarX =  0;
+var placarO =  0;
 
 $('.btn').click(function(){
     
@@ -11,28 +13,30 @@ $('.btn').click(function(){
         tabuleiro[campo] = 1;
 
         $(this).html("X");
-        $(this).off('click');
+        $(this).attr('disabled','disabled');
 
         jogadorDaVez = false;
 
-         var vencedor =  verificarVencedor(tabuleiro);
+        var vencedor =  verificarVencedor(tabuleiro);
 
         if(vencedor == 1){
-            alert("PARABÉNS JOGADOR X")
+            placarX++;
+            placar(placarX,placarO)
         }
     }else{
 
         tabuleiro[campo] = 2;
 
         $(this).html("O");
-        $(this).off('click');
+        $(this).attr('disabled','disabled');
 
         jogadorDaVez = true;
 
         var vencedor = verificarVencedor(tabuleiro);
         
         if(vencedor == 2){
-            alert("PARABÉNS JOGADOR O")
+            placarO++;
+            placar(placarX,placarO)
         }
         
 
@@ -40,6 +44,25 @@ $('.btn').click(function(){
     
     
 });
+
+function placar(X,O){
+
+    $('.placar').text(`X ${X}   -   O ${O}`);
+    $('.btn').attr('disabled','disabled');
+    jogadorDaVez = true;
+
+}
+
+$('.reset').click(function(){
+
+    $('.btn').removeAttr('disabled');
+    $('.btn').text('');
+    $('.btn').attr('style', ''); 
+    tabuleiro = [0,0,0,0,0,0,0,0,0];
+    
+    jogadorDaVez = true;
+
+})
 
 function verificarVencedor(tabuleiro){
 
@@ -68,8 +91,8 @@ function verificarVencedor(tabuleiro){
             $(`#${jogadas_vencedoras[i][0]}`).css('color', 'red');
             $('#'+jogadas_vencedoras[i][1]+'').css('color', 'red');
             $('#'+jogadas_vencedoras[i][2]+'').css('color', 'red');
-            
-            return jogadas_vencedoras[i][0];
+
+            return tabuleiro[jogadas_vencedoras[i][1]];
 
         }
 
